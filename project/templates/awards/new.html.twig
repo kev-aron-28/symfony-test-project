@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+  
+{% block title %}New Project{% endblock %}
+  
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Agregar premio</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('awards') }}"> 
+                    Distinciones al 
+Mérito Politécnico
+                </a>
+            </div>
+            <div class="card-body">
+                 {{ include('awards/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

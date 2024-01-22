@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listado de invitados
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h2 class="text-center mt-5 mb-3">Listado de empleados</h2>
+		<div class="card">
+			<div class="card-header d-inline-flex">
+				<a class="btn btn-outline-primary" href="{{ path('new_employee') }}">
+					Agregar usuario
+				</a>
+
+				<div class="dropdown ms-1">
+					<a class="btn btn-outline-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Obtener confirmados por dependencia
+					</a>
+
+					<ul class="dropdown-menu">
+                    {% for school in schools %}
+                        <li>
+							<a class="dropdown-item" href="{{ path('filter', {'id': school.id}) }}">{{ school.name }}</a>
+						</li>
+                    {% endfor %}
+					</ul>
+				</div>
+			</div>
+			<div class="card-body">
+				<table class="table table-striped">
+					<tr>
+						<th>CURP</th>
+						<th>Nombre</th>
+						<th>Dependencia</th>
+						<th>Premio</th>
+						<th>Acompanante</th>
+						<th>Discapacidad</th>
+						<th>Asistencia</th>
+						<th width="240px">Action</th>
+					</tr>
+					{% for employee in employees %}
+						<tr>
+							<td>{{ employee.curp }}</td>
+							<td>{{ employee.name }}</td>
+							<td>{{ employee.school.name }}</td>
+							<td>{{ employee.award.name }}</td>
+							{% if employee.companion %}
+								<td>Con acompanante</td>
+							{% else %}
+								<td>Sin acompanante</td>
+							{% endif %}
+
+							{% if employee.disability %}
+								<td>{{employee.disability}}</td>
+							{% else %}
+								<td>Sin condicion	</td>
+							{% endif %}
+
+							{% if not employee.attendance   %}
+								<td>No asiste</td>
+							{% else %}
+								<td>Asiste</td>
+							{% endif %}
+
+							<td>
+								<form method="post" action="{{ path('employee_delete', {'id': employee.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+									<a class="btn btn-outline-success" href="{{ path('employee_edit', {'id': employee.id }) }}">
+										Editar
+									</a>
+									<button class="btn btn-outline-danger">Eliminar</button>
+								</form>
+							</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

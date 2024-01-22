@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Resume</title>
+		<style>
+			@page {
+				size: A4;
+			}
+
+			body {
+				font-family: Arial, sans-serif;
+				margin: 10mm 15mm;
+			}
+
+			.page-break {
+				page-break-before: always;
+			}
+
+			header {
+				background-color: #730638; /* Rojo */
+				color: #FFFFFF; /* Blanco */
+				padding: 15px;
+				display: flex;
+				flex-direction: row;
+				gap: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Page 1 content -->
+		<div>
+			<header>
+				<img src="{{imageSrc}}" width="50px" />
+				<h1>Invitación</h1>
+				<h4>{{school}}</h4>
+			</header>
+			<h2>Distinción:
+				{{ award }}</h2>
+			<h3>CURP:
+				{{curp}}</h3>
+			<p>Nombre:
+				{{name}}</p>
+			<p>Dirección: {{ address }}</p>
+			<p>
+				Fecha:
+				{{ date|date('Y-m-d H:i:s') }}</p>
+			<p>Categoria:{{category}}</p>
+			{% if condition %}
+				<p>
+					Condicion:
+					{{condition}}
+				</p>
+			{% endif %}
+			<!-- Add more content for page 1 as needed -->
+		</div>
+
+		{% if companion %}
+			<!-- Page break -->
+			<div class="page-break"></div>
+
+			<!-- Page 2 content -->
+			<div>
+				<header>
+				<img src="{{imageSrc}}" width="50px" />
+				<h1>Invitación al acompañante</h1>
+				<h4>{{school}}</h4>
+			</header>
+			<h2>Distinción:
+				{{ award }}</h2>
+			<p>Direccion:{{ address }}</p>
+			<p>
+				Fecha:
+				{{ date|date('Y-m-d H:i:s') }}</p>
+			</div>
+		{% endif %}
+	</body>
+</html>

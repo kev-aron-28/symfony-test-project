@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+  
+{% block title %}Project index{% endblock %}
+  
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3"> Distinciones al 
+Mérito Politécnico</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{ path('awards_new') }}"> 
+                    Agregar distincion 
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Categoria</th>
+                        <th width="240px">Action</th>
+                    </tr>
+                    {% for award in awards %}
+                    <tr>
+                        <td>{{ award.name }}</td>
+                        <td>{{ award.category }}</td>
+                        <td>
+                            <form method="post" action="{{ path('awards_delete', {'id': award.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                                <a
+                                    class="btn btn-outline-success"
+                                    href="{{ path('awards_edit', {'id': award.id}) }}">
+                                    Edit
+                                </a>
+  
+                                <input type="hidden" name="_token" value="{{ award.id }}">
+                                <button class="btn btn-outline-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+  
+{% endblock %}

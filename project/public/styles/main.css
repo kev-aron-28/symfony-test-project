@@ -1,0 +1,36 @@
+header {
+  background-color: #730638; /* Rojo */
+  color: #FFFFFF; /* Blanco */
+  padding: 15px;
+  display: flex;
+  gap: 30px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.invite-container {
+  margin-top: 30px;
+  display: none;
+}
+
+.acept {
+  display: flex;
+  gap: 40px;
+}
+
+#pending, #accepted, #declined {
+  display: none;
+}
+
+@page {
+  size: A4;
+}
+
+.page-break {
+  page-break-before: always;
+}

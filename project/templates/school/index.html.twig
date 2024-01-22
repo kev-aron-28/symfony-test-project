@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+  
+{% block title %}Project index{% endblock %}
+  
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Dependencia</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-primary" href="{{ path('schools_new') }}"> 
+                    Agregar dependencia
+                </a>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Fecha</th>
+                        <th width="240px">Action</th>
+                    </tr>
+                    {% for school in schools %}
+                    <tr>
+                        <td>{{ school.name }}</td>
+                        <td>{{ school.address }}</td>
+                        <td>{{ school.date|date('Y-m-d H:i:s') }}</td>
+                        <td>
+                            <a
+                                class="btn btn-outline-success"
+                                href="{{ path('schools_edit', {'id': school.id}) }}">
+                                Editar
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+  
+{% endblock %}

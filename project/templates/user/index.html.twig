@@ -1,0 +1,64 @@
+{% extends 'base.user.html.twig' %}
+
+{% block title %}Invitaciones
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<div id="liveAlertPlaceholder"></div>
+		<h2 class="text-center mt-5 mb-3">Ingresar CURP</h2>
+		<div class="card">
+			<div class="card-body">
+				<fieldset>
+					<div class="mb-3">
+						<label for="curp" class="form-label">CURP</label>
+						<input type="text" id="curp" class="form-control" placeholder="CURP">
+					</div>
+					<button class="btn btn-primary" onclick="getUser()">Obtener invitacion</button>
+				</fieldset>
+			</div>
+		</div>
+
+
+		<div class="invite-container" id="response">
+			<h2 class="mt-5">Resultado</h2>
+
+			<p id="name">Invitado: Kevin</p>
+			<p id="award">Distincion: Nombre de la distincion</p>
+			<p id="school">Dependencia: Nombre de la distincion</p>
+
+			<div id="pending">
+
+				<div class="acept">
+					<label for="cars">Invitado:</label>
+					<select name="" id="invite">
+						<option value="1">Si</option>
+						<option value="0">No</option>
+					</select>
+					<label for="cars">Condicion:</label>
+					<select name="cars" id="condition">
+						<option value="Sin condicion">Sin condicion</option>
+						<option value="Bastón">Bastón</option>
+						<option value="Muletas">Muletas</option>
+						<option value="Silla de ruedas">Silla de ruedas</option>
+					</select>
+					<button type="button" class="btn btn-primary" onclick="acceptInvite()">Aceptar</button>
+				</div>
+
+				<button class="btn btn-outline-danger" onclick="cancelInvite()">Rechazar</button>
+			</div>
+
+			<div id="accepted">
+				Ya has aceptado tu invitacion
+				<a  id="pdf" href="#" style="margin-left: 20px;">Obtener invitacion</a>
+			</div>
+
+
+			<div id="declined">
+				Cancelaste tu invitacion
+			</div>
+		</div>
+
+	</div>
+{% endblock %}
